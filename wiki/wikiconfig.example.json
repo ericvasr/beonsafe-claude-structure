@@ -1,0 +1,14 @@
+{
+  "_doc": "Marcador de vault. Copie para a RAIZ do vault com o nome .wikiconfig.json — o pipeline global (hooks librarian + /ingerir /consultar /lint) detecta este arquivo subindo a partir do diretório da sessão. Todos os paths são relativos a esta pasta.",
+  "id": "pessoal",
+  "desc": "Wiki de conhecimento pessoal. Destino canônico de aprendizado durável.",
+  "wiki": "wiki",
+  "raw": "raw",
+  "index": "wiki/index.md",
+  "log": "wiki/log.md",
+  "inbox": "wiki/meta/inbox",
+  "lang": "pt-BR",
+  "derived_graphs": [],
+  "raw_dirs": ["artigos", "leituras", "notas", "feedbacks", "videos"],
+  "wiki_dirs": ["projetos-pessoais", "projetos-trabalho", "leituras", "metas", "temas", "domains", "desenvolvimento", "atividades", "feedbacks"]
+}

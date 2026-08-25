@@ -1,0 +1,27 @@
+{
+  "_doc": "Registro dos vaults conhecidos. NÃO é mapa de roteamento: o vault de destino é decidido pelo CONTEÚDO de cada aprendizado, na ingestão, nunca pelo diretório onde a sessão rodou. Este arquivo só diz quais vaults existem e qual é o recorte de cada um, para o /ingerir poder endereçar os dois.",
+  "_porque": "Rotear por prefixo de diretório parece óbvio e está errado: a mesma sessão num produto gera as duas lentes. 'Escrita fora da transação escapa do gate' é padrão, e vai para o pessoal; 'Sistema X: o gate de módulo e a esteira' é SSOT, e vai para o da empresa. Um diretório não separa isso.",
+
+  "vaults": [
+    {
+      "id": "pessoal",
+      "raiz": "$HOME/vaults/conhecimento-pessoal",
+      "cunho": "pessoal",
+      "pergunta": "o que EU aprendi e levo comigo",
+      "recorte": "padrão, armadilha, princípio, ofício — generalizável para fora desta empresa",
+      "vida_util": "durável; sobrevive a trocar de emprego",
+      "sensivel": "nunca — sem IP de cliente, credencial, nome de contrato, dado de pessoa"
+    },
+    {
+      "id": "empresa",
+      "raiz": "$HOME/vaults/conhecimento-empresa",
+      "cunho": "empresa",
+      "pergunta": "como ISTO AQUI está montado e opera",
+      "recorte": "SSOT operacional: host, ADR, topologia, versão, cliente, decisão de negócio",
+      "vida_util": "vive enquanto o sistema existir; morre com o desligamento",
+      "sensivel": "sim, com o cuidado que o vault já tem"
+    }
+  ],
+
+  "_exemplo": "Um incidente de fila em memória gera DUAS páginas, não uma escolha: no pessoal, 'fila em memória não serializa entre processos' (o padrão, sem citar cliente); na empresa, a página do sistema afetado com host, versão e o que foi mudado. Uma linka a outra."
+}

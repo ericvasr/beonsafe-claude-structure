@@ -1,0 +1,15 @@
+{
+  "_nota": "Exceções versionadas ao license-policy.md. Cada item em 'allow' = override auditado de um veredito BLOCK/REVIEW. Preencher via aprovação explícita do responsável; espelhar o registro em logs/license-audit.jsonl.",
+  "_schema_item": {
+    "repo": "owner/name ou URL",
+    "spdx": "SPDX detectado (ou NOASSERTION)",
+    "modo": "EMBUTIDO | FERRAMENTA",
+    "veredito_original": "BLOCK | REVIEW",
+    "aprovado_por": "nome do responsável",
+    "motivo": "justificativa da exceção",
+    "ts": "ISO-8601"
+  },
+  "version": 1,
+  "updated": "2026-06-19",
+  "allow": []
+}

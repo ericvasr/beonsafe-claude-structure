@@ -1,0 +1,20 @@
+BeOnSafe Claude Structure
+Copyright (c) 2026 Eric Ribeiro (BeOnSafe)
+
+Este produto inclui conteúdo derivado de trabalho de terceiros, usado sob os
+termos das licenças originais.
+
+A skill em skills/front/ é uma composição que consolida conceitos de quatro
+projetos de terceiros. A atribuição completa — com o copyright holder de cada
+um, o texto da licença, onde cada fonte entra e a declaração de modificação
+exigida pela Apache-2.0 — está em:
+
+    skills/front/PROCEDENCIA.md
+
+Uma das fontes, pbakaus/impeccable, é licenciada sob Apache License 2.0.
+A cópia integral dessa licença está em:
+
+    licenses/Apache-2.0.txt
+
+Os avisos do NOTICE original do impeccable são reproduzidos em
+skills/front/PROCEDENCIA.md, seção 1.

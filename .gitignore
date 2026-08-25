@@ -1,0 +1,9 @@
+# nada pessoal/sensível deve entrar
+settings.local.json
+*cache*.json
+daemon.status.json
+remote-settings.json
+security_warnings_*.json
+policy-limits.json
+memory/
+.DS_Store

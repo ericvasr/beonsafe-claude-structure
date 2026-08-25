@@ -1,0 +1,14 @@
+{
+  "_doc": "Config de fallback do pipeline de documentação (hooks librarian + /ingerir /consultar /lint). Usado quando o cwd NÃO está dentro de nenhum vault — nenhum .wikiconfig.json subindo a árvore. Aprendizado durável de sessão fora de vault cai aqui, no vault pessoal. Um vault de verdade é detectado pelo próprio .wikiconfig.json na raiz dele.",
+  "id": "pessoal",
+  "root": "$HOME/vaults/conhecimento-pessoal",
+  "wiki": "wiki",
+  "raw": "raw",
+  "index": "wiki/index.md",
+  "log": "wiki/log.md",
+  "inbox": "wiki/meta/inbox",
+  "lang": "pt-BR",
+  "derived_graphs": [],
+  "raw_dirs": ["artigos", "leituras", "notas", "feedbacks", "videos"],
+  "wiki_dirs": ["projetos-pessoais", "projetos-trabalho", "leituras", "metas", "temas", "domains", "desenvolvimento", "atividades", "feedbacks"]
+}

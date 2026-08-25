@@ -1,0 +1,48 @@
+{
+  "_doc": "Fragmento mesclado pelo install.sh no seu ~/.claude/settings.json. Nunca substitui o arquivo: mcpServers, permissions e enabledPlugins seus permanecem, e hook com o mesmo comando não é duplicado — reinstalar não empilha gatilho. Só declara o que este blueprint precisa para funcionar.",
+
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/hooks/statusline.sh",
+    "padding": 0
+  },
+
+  "env": {
+    "LIBRARIAN_MIN_CHANGES": "1"
+  },
+
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.claude/hooks/session-brief.sh" },
+          { "type": "command", "command": "bash ~/.claude/hooks/code-review-gate.sh --baseline" }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "bash ~/.claude/hooks/review-voice-guard.sh" }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          { "type": "command", "command": "bash ~/.claude/hooks/librarian-inbox.sh" }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.claude/hooks/code-review-gate.sh" },
+          { "type": "command", "command": "bash ~/.claude/hooks/librarian-session-end.sh" }
+        ]
+      }
+    ]
+  }
+}

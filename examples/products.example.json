@@ -1,0 +1,45 @@
+{
+  "_doc": "Portfólio de exemplo dos agentes de operação. Os agentes em agents/operacao/ medem produção, e produção é sempre específica — host, banco, runtime. Este arquivo é o único lugar onde essa especificidade mora: troque os produtos pelos seus e os agentes passam a medir o seu ambiente sem editar o prompt deles.",
+  "_porque": "Dois produtos, não um, porque os agentes distinguem dois arquétipos de deploy que se comportam de formas diferentes — orquestrado por containers e processo gerenciado direto no host. Um portfólio de exemplo com só um deles esconde metade do método: em containers você mede por container e RestartCount; no processo gerenciado, pelo supervisor e pelo commit do diretório de deploy.",
+  "_aviso": "Os valores abaixo são inventados para o exemplo. Não copie a topologia: porta, modo de TLS, prefixo de schema e convenção de caminho são decisões suas, e repetir as de outra pessoa não ajuda nem é seguro.",
+
+  "produtos": [
+    {
+      "id": "atlas",
+      "nome": "Atlas",
+      "o_que_e": "Plataforma de observabilidade interna: coleta evento de rede e de sistema, guarda em banco relacional, expõe em painel",
+      "runtime": "Docker Swarm, uma dúzia de serviços",
+      "acesso": "ssh atlas.exemplo.internal",
+      "banco": "PostgreSQL 14 em container, porta padrão",
+      "schemas": ["app_core", "app_rede"],
+      "ingestao": [
+        { "caminho": "evento de syslog", "cadencia": "contínua", "tabela": "app_core.syslog_event" },
+        { "caminho": "evento bruto", "cadencia": "contínua", "tabela": "app_core.raw_event" },
+        { "caminho": "sonda de disponibilidade", "cadencia": "60s", "tabela": "app_rede.probe_result" }
+      ],
+      "metricas": "Prometheus + blackbox exporter (probe_success, probe_duration_seconds)",
+      "deploy": "CI hospedado → registry → docker stack deploy",
+      "rollback": "tag anterior da imagem, declarada em docs/runbook-rollback.md"
+    },
+    {
+      "id": "farol",
+      "nome": "Farol",
+      "o_que_e": "API multi-tenant de cadastro e consulta, consumida por um front próprio e por integração de parceiro",
+      "runtime": "supervisor de processo (systemd ou equivalente), não containers",
+      "acesso": "ssh farol.exemplo.internal",
+      "caminho": "/srv/farol",
+      "banco": "MySQL 8 em host separado",
+      "ingestao": [
+        { "caminho": "webhook do parceiro", "cadencia": "irregular", "tabela": "evento_parceiro" },
+        { "caminho": "job noturno de conciliação", "cadencia": "diária, 03:00", "tabela": "conciliacao" }
+      ],
+      "metricas": "status do supervisor + colunas de timestamp no banco; sem Prometheus próprio",
+      "deploy": "CI hospedado publica artefato versionado; o host baixa e reinicia o serviço",
+      "rollback": "artefato anterior no registry; migrations versionadas com aplicação registrada"
+    }
+  ],
+
+  "_como_usar": "Copie para ~/.claude/examples/products.json (sem o .example), troque pelos seus produtos, e cite o caminho no CLAUDE.md. Os agentes de operação leem esse arquivo antes de medir. Nada aqui deve conter senha, token ou connection string completa — só o endereço de onde medir.",
+
+  "_nao_publique_o_seu": "Preenchido com os seus dados, este arquivo descreve a topologia de produção: host, porta, modo de TLS, caminho de deploy. Mantenha o seu products.json fora de repositório público. O .example é o que se versiona."
+}
